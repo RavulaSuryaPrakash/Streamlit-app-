@@ -11,8 +11,9 @@ import seaborn as sns
 # Configure Streamlit page
 st.set_page_config(page_title="San Jose Traffic Analysis", layout="wide")
 
+project_id = st.secrets["bigquery"]["project"]
 # Initialize BigQuery Client
-client = bigquery.Client()
+client = bigquery.Client(project=project_id)
 
 # Query to fetch processed data from BigQuery
 query = """
@@ -65,7 +66,7 @@ if not df_filtered.empty:
     st.pyplot(fig)
 else:
     st.write("No data available for the selected date range.")
-    
+
 ###############################################
 # Area Chart: Traffic Volume Over Time
 ###############################################
