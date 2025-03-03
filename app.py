@@ -11,7 +11,7 @@ import seaborn as sns
 # Configure Streamlit page
 st.set_page_config(page_title="San Jose Traffic Analysis", layout="wide")
 
-project_id = st.secrets["bigquery"]["project"]
+project_id = st.secrets.get("bigquery", {}).get("project", "default-project-id")
 # Initialize BigQuery Client
 client = bigquery.Client(project=project_id)
 
